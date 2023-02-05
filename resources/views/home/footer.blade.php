@@ -68,3 +68,12 @@
         </div>
     </div>
 </footer>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+ <script type="text/javascript">
+     $(function() {
+         setTimeout(function() {
+             $("#flash_message").hide();
+         }, 2000);
+     });
+ </script>
