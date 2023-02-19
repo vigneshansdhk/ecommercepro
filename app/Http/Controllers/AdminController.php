@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Orders;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use PDF;
 
 class AdminController extends Controller
 {
@@ -55,7 +57,6 @@ class AdminController extends Controller
         $imagename = time() . '.' . $image->getClientOriginalExtension();
         $request->image->move('product', $imagename);
         $product->image = $imagename;
-
         $product->save();
         flash('Product Added Successfuly', 'success');
         return Redirect('/show-product');
@@ -102,5 +103,27 @@ class AdminController extends Controller
         $product_data->delete();
         flash('Product delete Successfuly', 'success');
         return Redirect('/show-product');
+    }
+
+    public function view_order()
+    {
+        $orders = Orders::get();
+        return view('admin.order', compact('orders'));
+    }
+
+    public function delivered($id)
+    {
+        $order = Orders::find($id);
+        $order->delivery_status = 'delivered';
+        $order->save();
+        flash('Order Delivered Successfuly', 'success');
+        return Redirect('/view-order');
+    }
+
+    public function printpdf($id)
+    {
+        $order = Orders::find($id);
+        $pdf = PDF::loadview('admin.pdf',compact('order'));
+        return $pdf->download('order_details.pdf');
     }
 }

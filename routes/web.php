@@ -28,7 +28,7 @@ Route::middleware([
 });
 
 
-Route::get('/redirect',[HomeController::class,'redirect']);
+Route::get('/redirect',[HomeController::class,'redirect'])->middleware('auth','verified');
 
 Route::get('/view-category',[AdminController::class,'view_category']);
 Route::post('/add-category',[AdminController::class,'add_category']);
@@ -40,6 +40,12 @@ Route::get('/show-product',[AdminController::class,'show_product']);
 Route::get('/edit-product/{id}',[AdminController::class,'edit_product']);
 Route::post('/update-product',[AdminController::class,'update_product']);
 Route::get('/delete-product/{id}',[AdminController::class,'delete_product']);
+Route::get('/view-order',[AdminController::class,'view_order']);
+Route::get('/delivered/{id}',[AdminController::class,'delivered']);
+Route::get('/print-pdf/{id}',[AdminController::class,'printpdf']);
+
+
+
 
 Route::get('/product-details/{id}',[HomeController::class,'product_detail']);
 Route::post('/add-cart',[HomeController::class,'addcart']);
@@ -47,6 +53,8 @@ Route::get('/show-cart',[HomeController::class,'show_cart']);
 Route::get('/remove-cart/{id}',[HomeController::class,'remove_cart']);
 
 Route::get('/cash-order',[HomeController::class,'cash_order']);
+Route::get('/stripe/{totalprice}',[HomeController::class,'stripe']);
+Route::post('stripe/{totalprice}',[HomeController::class, 'stripePost'])->name('stripe.post');
 
 
 

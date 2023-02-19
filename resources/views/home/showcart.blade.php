@@ -73,7 +73,7 @@
     <div class="text-center ">
         <h3 class="font-weight-bold">Proceed to order</h3>
         <a class="btn btn-danger" href="{{url('cash-order')}}">Cash on delivery</a>
-        <a class="btn btn-danger" href="">Pay using card</a>
+        <a class="btn btn-danger" href="{{url('stripe')}}/{{$totalprice}}">Pay using card</a>
     </div>
     <!-- footer start -->
     @include('home.footer')
