@@ -9,6 +9,7 @@ use App\Models\Cart;
 use App\Models\Orders;
 use Session;
 use Stripe;
+use App\Models\User;
 
 
 class HomeController extends Controller
@@ -26,7 +27,17 @@ class HomeController extends Controller
         $usertype = Auth::user()->usertype;
 
         if ($usertype == 1) {
-            return view('admin.home');
+            $total_products = Product::count();
+            $total_orders   = Orders::count();
+            $total_users    = User::count();
+            $order = Orders::get();
+            $total_revenue = 0;
+            foreach ($order as $order) {
+                $total_revenue = $total_revenue + $order->price;
+            }
+            $total_delivered  = Orders::where('delivery_status', 'delivered')->count();
+            $total_processing = Orders::where('delivery_status', 'processing')->count();
+            return view('admin.home', compact('total_products', 'total_orders', 'total_users', 'total_revenue', 'total_delivered', 'total_processing'));
         } else {
             $product = Product::paginate(3);
             return view('home.user', compact('product'));
@@ -121,7 +132,7 @@ class HomeController extends Controller
         return view('home.stripe', compact('totalprice'));
     }
 
-    public function stripePost(Request $request,$totalprice)
+    public function stripePost(Request $request, $totalprice)
     {
         Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
 
@@ -159,6 +170,25 @@ class HomeController extends Controller
 
         Session::flash('success', 'Payment successful!');
 
+        return back();
+    }
+
+    public function show_order()
+    {
+        if (Auth::id()) {
+            $user = Auth::user();
+            $user_id = $user->id;
+            $orders = Orders::where('user_id',$user_id)->get();
+            return view('home.order',compact('orders'));
+        } else {
+            return redirect('login');
+        }
+    }
+
+    public function cancel_order($id){
+        $order = Orders::find($id);
+        $order->delivery_status = 'You canceled the order';
+        $order->save();
         return back();
     }
 }

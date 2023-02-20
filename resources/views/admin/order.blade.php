@@ -25,6 +25,12 @@
                     @include('flash::message')
                 </div>
                 <div class="container-fluid">
+                    <div class="text-center">
+                        <form action="{{url('search')}}" method="get">
+                            <input type="search" name="search" placeholder="Search Something" class="input_color">
+                            <input type="submit" value="search" class="btn btn-primary">
+                        </form>
+                    </div>
                     <table class=" mt-5" border="1">
                         <thead>
                             <tr>
@@ -40,6 +46,7 @@
                                 <th>Image</th>
                                 <th>Delivered</th>
                                 <th>Print PDF</th>
+                                <th>Send email</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -69,7 +76,7 @@
                                         <a href="{{ url('print-pdf') }}/{{ $order->id }}"
                                             class="btn btn-secondary">Print PDF</a>
                                     </td>
-                                    {{-- <td><a href="{{url('/delete-category')}}/{{$cat_data->id}}" class="btn btn-danger">Delete</a></td> --}}
+                                    <td><a href="{{url('send-email')}}/{{$order->id}}" class="btn btn-info">Send Email</a></td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -77,16 +84,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- content-wrapper ends -->
-        <!-- partial:partials/_footer.html -->
-        {{-- <footer class="footer">
-            <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © bootstrapdash.com 2020</span>
-                <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Free <a href="https://www.bootstrapdash.com/bootstrap-admin-template/" target="_blank">Bootstrap admin templates</a> from Bootstrapdash.com</span>
-            </div>
-        </footer> --}}
-        <!-- partial -->
     </div>
     <!-- main-panel ends -->
     </div>

@@ -21,6 +21,7 @@
     <link href="home/css/style.css" rel="stylesheet" />
     <!-- responsive style -->
     <link href="home/css/responsive.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body>
@@ -44,6 +45,36 @@
     @include('home.product')
     <!-- end product section -->
 
+     <div class="text-center pb-5">
+        <h1 class="text-center" style="font-size: 30px; padding:30px;">Comments</h1>
+
+        <form action="" method="post">
+            <textarea name="comment" id="" style="height: 150px; width:600px;" placeholder="Something Comment here"></textarea>
+            <br>
+            <a href="" class="btn btn-primary">Comment</a>
+        </form>
+     </div>
+
+     <div>
+        <h1 class="text-center" style="font-size: 30px; padding:30px;">All Comments</h1>
+
+        <div class="text-center">
+            <b>Vicky</b>
+            <p>This is my first commit</p>
+            <a href="javascript:void(0)" onclick="reply(this)">Reply</a>
+        </div>
+        {{-- <div class="text-center">
+            <b>moni</b>
+            <p>This is my first commit</p>
+            <a href="javascript:void(0)" onclick="reply(this)">Reply</a>
+        </div> --}}
+     </div>
+
+     <div class="text-center" style="display: none;" class="replydiv">
+        <textarea name="" placeholder="Write Something here" ></textarea>
+        <br>
+        <a href="" class="btn btn-primary">Reply</a>
+     </div>
     <!-- subscribe section -->
     @include('home.subscribe')
     <!-- end subscribe section -->
@@ -53,13 +84,16 @@
     <!-- footer start -->
     @include('home.footer')
     <!-- footer end -->
-    <div class="cpy_">
-        <p class="mx-auto">© 2021 All Rights Reserved By <a href="https://html.design/">Free Html Templates</a><br>
+    <script>
+        function reply(caller){
+            console.log('hello');
+             $('.replydiv').insertAfter($(caller));
+            // $('.replydiv').show();
+            $(".replydiv").css("display", "block")
+        }
+    </script>
 
-            Distributed By <a href="https://themewagon.com/" target="_blank">ThemeWagon</a>
-
-        </p>
-    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- jQery -->
     <script src="home/js/jquery-3.4.1.min.js"></script>
     <!-- popper js -->
