@@ -4,6 +4,12 @@
             <h2>
                 Our <span>products</span>
             </h2>
+            <div class="mt-4">
+                <form action="{{url('search-product')}}" method="get">
+                    <input style="width:500px;" type="text" name="search" placeholder="search for something">
+                    <input type="submit" value="search">
+                </form>
+            </div>
         </div>
         <div class="row">
             @foreach ($product as $pdt)

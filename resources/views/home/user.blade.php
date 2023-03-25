@@ -21,7 +21,9 @@
     <link href="home/css/style.css" rel="stylesheet" />
     <!-- responsive style -->
     <link href="home/css/responsive.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"
+        integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body>
@@ -45,7 +47,7 @@
     @include('home.product')
     <!-- end product section -->
 
-     <div class="text-center pb-5">
+    <div class="text-center pb-5">
         <h1 class="text-center" style="font-size: 30px; padding:30px;">Comments</h1>
 
         <form action="" method="post">
@@ -53,9 +55,9 @@
             <br>
             <a href="" class="btn btn-primary">Comment</a>
         </form>
-     </div>
+    </div>
 
-     <div>
+    <div>
         <h1 class="text-center" style="font-size: 30px; padding:30px;">All Comments</h1>
 
         <div class="text-center">
@@ -68,13 +70,13 @@
             <p>This is my first commit</p>
             <a href="javascript:void(0)" onclick="reply(this)">Reply</a>
         </div> --}}
-     </div>
+    </div>
 
-     <div class="text-center" style="display: none;" class="replydiv">
-        <textarea name="" placeholder="Write Something here" ></textarea>
+    <div class="text-center" style="display: none;" class="replydiv">
+        <textarea name="" placeholder="Write Something here"></textarea>
         <br>
         <a href="" class="btn btn-primary">Reply</a>
-     </div>
+    </div>
     <!-- subscribe section -->
     @include('home.subscribe')
     <!-- end subscribe section -->
@@ -85,15 +87,16 @@
     @include('home.footer')
     <!-- footer end -->
     <script>
-        function reply(caller){
-            console.log('hello');
-             $('.replydiv').insertAfter($(caller));
+        function reply(caller) {
+            $('.replydiv').insertAfter($(caller));
             // $('.replydiv').show();
             $(".replydiv").css("display", "block")
         }
     </script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"
+        integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- jQery -->
     <script src="home/js/jquery-3.4.1.min.js"></script>
     <!-- popper js -->
@@ -102,6 +105,17 @@
     <script src="home/js/bootstrap.js"></script>
     <!-- custom js -->
     <script src="home/js/custom.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function(event) {
+            var scrollpos = localStorage.getItem('scrollpos');
+            if (scrollpos) window.scrollTo(0, scrollpos);
+        });
+
+        window.onbeforeunload = function(e) {
+            localStorage.setItem('scrollpos', window.scrollY);
+        };
+    </script>
 </body>
 
 </html>
